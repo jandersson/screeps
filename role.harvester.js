@@ -4,7 +4,7 @@ var roleHarvester = {
     run: function(creep) {
         
         //debug
-        console.log(creep + ' free capacity: ' + creep.store.getFreeCapacity() );
+        //console.log(creep + ' free capacity: ' + creep.store.getFreeCapacity() );
         
         if(creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
@@ -22,8 +22,8 @@ var roleHarvester = {
                 }
             });
             //debug
-            console.log(creep + ' targets: ' + targets);
-            console.log(creep + ' targets.length: ' + targets.length);
+            //console.log(creep + ' targets: ' + targets);
+            //console.log(creep + ' targets.length: ' + targets.length);
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
@@ -31,9 +31,7 @@ var roleHarvester = {
             }
             // move randomly
             else{
-                const directions = [RIGHT, LEFT, TOP, TOP_RIGHT, TOP_LEFT, BOTTOM, BOTTOM_LEFT, BOTTOM_RIGHT]
-                const randomDirection = directions[Math.floor(Math.random() * directions.length)];
-                creep.move(randomDirection);
+                creep.randomWalk();
             }
         }
     }
